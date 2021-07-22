@@ -12,7 +12,11 @@ pipeline {
         sh 'mvn test'
       }
     }
-
+    stage('sonar scan') {
+      steps {
+        sh 'mvn clean verify sonar:sonar'
+      }
+    }
     stage('docker build') {
       steps {
         sh 'docker build -t helloworld/java:latest .'
