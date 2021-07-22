@@ -15,7 +15,7 @@ pipeline {
     stage('sonar scan') {
       steps {
         withSonarQubeEnv('SonarQube'){
-        sh "mvn sonar:sonar -Dsonar.host.url=http://192.168.1.250:9000 -Dsonar.login=${SONAR_AUTH_TOKEN}"
+        sh "mvn -f pom.xml clean compile sonar:sonar -Dsonar.host.url=http://192.168.1.250:9000 -Dsonar.login=${SONAR_AUTH_TOKEN}"
         }
       }
     }
