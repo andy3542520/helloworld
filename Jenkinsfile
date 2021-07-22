@@ -14,7 +14,7 @@ pipeline {
     }
     stage('sonar scan') {
       steps {
-        sh 'mvn -e clean verify sonar:sonar'
+        sh 'mvn -e clean verify sonar:sonar -Dsonar.login={sonar-token}'
       }
     }
     stage('docker build') {
