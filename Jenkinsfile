@@ -14,7 +14,7 @@ pipeline {
     }
     stage('sonar scan') {
       steps {
-        sh "mvn clean package -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.login=${SONAR_AUTH_TOKEN} -Dmaven.test.skip=true"
+        sh "mvn clean package -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.login=${SONAR_AUTH_TOKEN} "
       }
     }
     stage('docker build') {
