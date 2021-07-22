@@ -15,7 +15,7 @@ pipeline {
     stage('sonar scan') {
       steps {
         withSonarQubeEnv('SonarQube'){
-        sh "mvn clean package -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.login=${SONAR_AUTH_TOKEN}"
+        sh "mvn clean package -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.login=ea4aa1fea8b33209c32a2fef5fd246c0f8571adb"
         }
       }
     }
