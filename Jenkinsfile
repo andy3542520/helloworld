@@ -15,7 +15,7 @@ pipeline {
     stage('sonar scan') {
       steps {
         withSonarQubeEnv('SonarQube'){
-        sh "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar -Dsonar.host.url=http://192.168.1.250:9000 -Dsonar.login=${SONAR_AUTH_TOKEN}"
+        sh "mvn clean verify sonar:sonar -Dsonar.host.url=http://192.168.1.250:9000 -Dsonar.login=${SONAR_AUTH_TOKEN}"
         }
       }
     }
