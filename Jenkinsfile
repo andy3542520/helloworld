@@ -14,7 +14,7 @@ pipeline {
     }
     stage('sonar scan') {
       steps {
-        sh 'mvn clean verify sonar:sonar'
+        sh 'mvn clean verify sonar:sonar -Dsonar.login=9077ea18d14b7a7fd02411020f5496a90d81c9bd'
       }
     }
     stage('docker build') {
