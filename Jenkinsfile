@@ -27,7 +27,7 @@ pipeline {
 
     stage('Deploy to local docker') {
       steps {
-        sh 'docker run -d -p 8081:8080 helloworld/java:latest'
+        sh 'docker container run -p 8081:8080 helloworld/java:latest'
       }
     }
   }
