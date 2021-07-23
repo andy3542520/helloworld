@@ -31,16 +31,21 @@ pipeline {
       }
     }
     stage('Report') {
-      if (currentBuild.currentResult == 'UNSTABLE') {
-        currentBuild.result = "UNSTABLE"
-      } 
-      if (currentBuild.currentResult == 'SUCCESS') {
-        currentBuild.result = "SUCCESS"
+      steps {
+        script {
+          if (currentBuild.currentResult == 'UNSTABLE') {
+            currentBuild.result = "UNSTABLE"
+          } 
+          if (currentBuild.currentResult == 'SUCCESS') {
+            currentBuild.result = "SUCCESS"
+          }
+          else {
+            currentBuild.result = "FAILURE"
+          }
+        step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'grafana'])
+        }
       }
-      else {
-        currentBuild.result = "FAILURE"
-      }
-    }
+    
   }
   post {
      always {
