@@ -40,7 +40,7 @@ pipeline {
       else {
         currentBuild.result = "FAILURE"
       }
-      step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'grafana'])
+      steps([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'grafana'])
     }
   }
   post {
