@@ -30,6 +30,18 @@ pipeline {
         sh 'docker container run -p 8081:8080 helloworld/java:latest'
       }
     }
+    stage('Report') {
+      if (currentBuild.currentResult == 'UNSTABLE') {
+        currentBuild.result = "UNSTABLE"
+      } 
+      if (currentBuild.currentResult == 'SUCCESS') {
+        currentBuild.result = "SUCCESS"
+      }
+      else {
+        currentBuild.result = "FAILURE"
+      }
+      step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'grafana'])
+    }
   }
   post {
      always {
