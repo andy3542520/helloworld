@@ -4,4 +4,4 @@ WORKDIR /app
 COPY /target/hello-world-*.jar /app/helloworld.jar
 EXPOSE 8080
 ENTRYPOINT ["sh", "-c"]
-CMD ["java -jar helloworld.jar"]
+CMD ["java -javaagent:helloworld.jar"]
